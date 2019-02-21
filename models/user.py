@@ -13,9 +13,12 @@ class User(Document):
     hobby = ListField()
     like = IntField()
     interest = ListField()
-    em = StringField() #email
+    em = StringField() # email
     phone = IntField()
-    fb = StringField() #facebook
+    fb = StringField() # facebook
+    description =StringField() # tự mô tả ban thân
+    stt = StringField() # Trạng thái: chỉ có 1 trạng thái hiển thị trên trang cá nhân
+
 
 
 
