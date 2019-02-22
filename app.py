@@ -3,7 +3,7 @@ from flask import Flask, redirect, request, render_template, flash, session
 
 app = Flask(__name__)
 
-@app.route('/dating4banker', methods = ["GEt", "POST"])
+@app.route('/dating4everyone', methods = ["GET", "POST"])
 def home():
   if request.method == "GET":
     return render_template("login.html")
