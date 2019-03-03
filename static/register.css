@@ -1,0 +1,39 @@
+* {
+    font-size: 1rem
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#root {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.form_input {
+    margin-bottom: 16px
+}
+
+.form_label {
+    width: 100px;
+    display: inline-block;
+}
+
+.form_input > input {
+    border: solid 1px blue;
+}
+
+#btn_login {
+    float: right;
+    font-size: 1.1rem;
+    background-color: rgb(7, 7, 126);
+    color: #ffffff;
+    padding: 4px 10px 4px 10px;
+    border-width: 0;
+    border-radius: 78px;
+}
