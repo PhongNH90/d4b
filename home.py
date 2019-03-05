@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, redirect, flash, session
-from models import mlab
+import sys
+from models import mlab, plugin
 from models.user import User
 
 app = Flask(__name__)
