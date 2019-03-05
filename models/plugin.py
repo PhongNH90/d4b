@@ -60,8 +60,11 @@ def bo_dau(s):
 def get_max(l,k):
   l1 = []
   for item in l:
-    l1.append(item[k])
-  i_max = index(max(l1))
+    if item[k] != None:
+      l1.append(item[k])
+    else:
+      l1.append(0)
+  i_max = l1.index(max(l1))
   item_max = l[i_max]
   return item_max
 def get_top(l,k,n):
@@ -70,9 +73,9 @@ def get_top(l,k,n):
     l1.append(item)
   l_top =[]
   for i in range(n):
-    i_max = get_max(l1,k)
-    l_top.append(i_max)
-    l1.remove(i_max)
+    item_max = get_max(l1,k)
+    l_top.append(item_max)
+    l1.remove(item_max)
   return l_top
 def count_item(l1,l2,k):
   ci = 0

@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template, redirect, flash, session
 import sys
-from models import mlab, plugin
+from models import mlab
+from models.plugin import *
 from models.user import User
 
 app = Flask(__name__)
@@ -48,7 +49,12 @@ def home():
         u = User.objects.with_id(i)
         follow_list.append(u)
     print(follow_list)
-    return render_template("home.html", user = user, follow_list=follow_list )
+    boy = list(User.objects(gender="male"))
+    print(boy)
+    hotboy = get_top(boy,"like",3)
+    girl = list(User.objects(gender="female"))
+    hotgirl = get_top(girl,"like",3)
+    return render_template("home.html", user = user, follow_list=follow_list, hotboy=hotboy, hotgirl= hotgirl )
   else:
     return redirect("/login")
 
