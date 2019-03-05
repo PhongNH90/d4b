@@ -1,6 +1,6 @@
 from flask import Flask, redirect, request, render_template, flash, session
 from gmail import GMail, Message
-import mlab
+from model import mlab
 from models.user import User
 
 app = Flask(__name__)
