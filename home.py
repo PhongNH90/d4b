@@ -42,7 +42,13 @@ def logout():
 @app.route("/")
 def home():
   if "token" in session:
-    return render_template("home.html", )
+    user = User.objects.with_id(session["token"])
+    follow_list = []
+    for i in user["follow_list"]:
+        u = User.objects.with_id(i)
+        follow_list.append(u)
+    print(follow_list)
+    return render_template("home.html", user = user, follow_list=follow_list )
   else:
     return redirect("/login")
 
