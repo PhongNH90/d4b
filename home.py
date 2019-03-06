@@ -69,14 +69,20 @@ def follow():
     user2.save()
 
 @app.route("/unfollow/<uid>")
-def unfollow():
+def unfollow(uid):
   if "token" in session:
     user = User.objects.with_id(session["token"])
-    user["follow_list"].remove(uid)
-    user.save()
+    l1 = user["follow_list"]
+    l1.remove(uid)
+    user.update(set__follow_list=l1)
+    user.reload()
     user2 = User.objects.with_id(uid)
-    user2["like"] -= 1
-    user2.save()
+    l2 = 0
+    user2.update(set__like=l2)
+    user2.reload()
+  return redirect("/")
+
+  
 
 
 if __name__ == '__main__':

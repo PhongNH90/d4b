@@ -6,41 +6,43 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
+<style>
+
+</style>
+
 <head style="height:100px">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-          <nav class="navbar navbar-expand sticky-top navbar-light bg-light">
-              <!-- <a class="navbar-brand" href="#" >D4E</a> -->
-              <div class="navbar-brand navbar-expand">
-                <img src="/static/logo.png" alt="logo" style="height:50px">
-              </div>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-            
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="nav nav-tabs">
-                  <li class="nav-item active">
-                    <a class="nav-link disable" href="#">Home <span class="sr-only"></span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Suggested</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Profile</a>          
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/logout">Logout</a>
-                  </li>
-                </ul>
-                <form class="form-inline my-2 my-lg-0">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
-              </div>
-            </nav>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+    <nav class="navbar navbar-expand sticky-top navbar-light bg-light">
+      <div class="navbar-brand navbar-expand">
+        <img src="/static/logo.png" alt="logo" style="height:50px">
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>            
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav nav-tabs">
+          <li class="nav-item active">
+            <a class="nav-link disable" href="#">Home <span class="sr-only"></span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Suggested</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Profile</a>          
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
     
 </head>
 <body>
@@ -49,7 +51,27 @@
       <div class="col-2" >
         <div class="position-fixed">
           <h2 >{{user.name}}</h2>
-          <img src="{{user.img}}" alt="avatar" style="float: left">
+          <img id ="avatar" src="" alt="" style="width:200px;height:200px ;">
+          <script>
+            var u = '{{user}}';
+            let lk;
+            if (u["img"] == null) 
+            {
+              if (u["gender"] == "female") 
+              { 
+              lk = "static/girl.png";
+              }
+              else 
+              {
+                lk = "static/boy.png";
+              };
+            } 
+            else 
+            {
+              lk = u["img"];
+            }
+            document.getElementById("avatar").src = lk;
+          </script>
           <p>Gender: {{user.gender}}</p>
         </div>       
       </div>
@@ -59,13 +81,33 @@
             <div class="d-flex flex-row bd-highlight mb-3">
               <div class="p-2 flex-grow-0 bd-highlight">
                 <h4>{{u.name}}</h4>
-                <img src="{{u.img}}" alt="avatar" class="img-fluid img-thumbnail" style = "width:100px;height:100px">
+                <img src="" id="{{u.id}}" alt="" class="img-fluid img-thumbnail avatar" style = "width:100px;height:100px">
+                <script>
+                    let u2 = '{{u}}';
+                    let lk;
+                    if (u2["img"] == null) 
+                    {
+                      if (u2["gender"] == "female") 
+                      { 
+                      lk = "static/girl.png";
+                      }
+                      else 
+                      {
+                        lk = "static/boy.png";
+                      };
+                    } 
+                    else 
+                    {
+                      lk = u2["img"];
+                    };
+                    document.getElementById(u2[id]).src = lk;
+                  </script>
               </div>
               <div class="p-2 flex-grow-1 bd-highlight">
                 <p>{{u.stt}} </p>
               </div>
               <div class="p-2 flex-grow-0 bd-highlight">
-                <button>Unfriend</button>
+                <a href="/unfollow/{{u.id}}">Ngừng theo đuôi</a>
                 <button>Message</button>
               </div>
             </div>
