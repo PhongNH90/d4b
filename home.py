@@ -58,6 +58,25 @@ def home():
   else:
     return redirect("/login")
 
+@app.route("/follow/<uid>")
+def follow():
+  if "token" in session:
+    user = User.objects.with_id(session["token"])
+    user["follow_list"].append(uid)
+    user.save()
+    user2 = User.objects.with_id(uid)
+    user2["like"] += 1
+    user2.save()
+
+@app.route("/unfollow/<uid>")
+def unfollow():
+  if "token" in session:
+    user = User.objects.with_id(session["token"])
+    user["follow_list"].remove(uid)
+    user.save()
+    user2 = User.objects.with_id(uid)
+    user2["like"] -= 1
+    user2.save()
 
 
 if __name__ == '__main__':
