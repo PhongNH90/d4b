@@ -149,3 +149,10 @@ def search(l,v):
     if n == va:
       search_list.append(i)
   return search_list
+def place_img(u):
+  if u["img"] == None:
+    if u["gender"] == "female":
+      u["img"] = "static/girl.png"
+    else:
+      u["img"] = "static/boy.png"
+  return u

@@ -44,16 +44,23 @@ def logout():
 def home():
   if "token" in session:
     user = User.objects.with_id(session["token"])
+    user = place_img(user)
     follow_list = []
     for i in user["follow_list"]:
         u = User.objects.with_id(i)
+        u = place_img(u)
         follow_list.append(u)
     print(follow_list)
     boy = list(User.objects(gender="male"))
-    print(boy)
-    hotboy = get_top(boy,"like",3)
+    hot_boy = get_top(boy,"like",3)
+    hotboy = []
+    for u in hot_boy:
+      hotboy.append(place_img(u))
     girl = list(User.objects(gender="female"))
-    hotgirl = get_top(girl,"like",3)
+    hot_girl = get_top(girl,"like",3)
+    hotgirl = []
+    for u in hot_girl:
+      hotgirl.append(place_img(u))
     return render_template("home.html", user = user, follow_list=follow_list, hotboy=hotboy, hotgirl= hotgirl )
   else:
     return redirect("/login")
