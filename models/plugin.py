@@ -147,7 +147,7 @@ def search(l,v):
   for i in l:
     n = bo_dau(i["name"])
     if n == va:
-      search_list.append(i)
+      search_list.append(place_img(i))
   return search_list
 def place_img(u):
   if u["img"] == None:

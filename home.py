@@ -89,6 +89,12 @@ def unfollow(uid):
     user2.reload()
   return redirect("/")
 
+@app.route("/search/<un>")
+def search_user(un):
+  if "token" in session:
+    search_list = search(User.objects,un)
+  # return render_template("search.html",search_list=search_list)
+    return ok
   
 
 
