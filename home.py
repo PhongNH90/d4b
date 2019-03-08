@@ -45,11 +45,13 @@ def home():
   if "token" in session:
     user = User.objects.with_id(session["token"])
     user = place_img(user)
+    user = place_stt(user)
     follow_list = []
     for i in user["follow_list"]:
-        u = User.objects.with_id(i)
-        u = place_img(u)
-        follow_list.append(u)
+      u = User.objects.with_id(i)
+      u = place_img(u)
+      u = place_stt(u)
+      follow_list.append(u)
     print(follow_list)
     boy = list(User.objects(gender="male"))
     hot_boy = get_top(boy,"like",3)
@@ -93,8 +95,18 @@ def unfollow(uid):
 def search_user(un):
   if "token" in session:
     search_list = search(User.objects,un)
-  # return render_template("search.html",search_list=search_list)
-    return ok
+    return render_template("search.html", search_list=search_list)
+
+@app.route("/suggest")
+def suggest():
+  if "token" in session:
+    user = User.objects.with_id(session["token"])
+    if user["gender"] == "male":
+      list_u = User.objects(gender="female")
+    else:
+      list_u = User.objects(gender="male")
+    suggest_list = suggest(user,list_u)
+    return render_template("suggest.html",suggest_list=suggest_list)
   
 
 

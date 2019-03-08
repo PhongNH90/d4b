@@ -7,7 +7,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 <style>
-
+.female {color: #FF3333}
+.male {color: #0033CC}
 </style>
 
 <head style="height:100px">
@@ -15,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
-    <nav class="navbar navbar-expand sticky-top navbar-light bg-light">
+    <nav class="navbar navbar-expand sticky-top navbar-light bg-light border-bottom">
       <div class="navbar-brand navbar-expand">
         <img src="/static/logo.png" alt="logo" style="height:50px">
       </div>
@@ -23,7 +24,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>            
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="nav nav-tabs">
+        <ul class="nav nav-tabs border-0">
           <li class="nav-item active">
             <a class="nav-link disable" href="#">Home <span class="sr-only"></span></a>
           </li>
@@ -56,10 +57,14 @@
 <body>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-2" >
+      <div class="col-2 text-wrap" >
         <div class="position-fixed">
-          <h2 >{{user.name}}</h2>
-          <img id ="avatar" src="{{user.img}}" alt="" style="width:200px;height:200px ;">
+          <div>
+            <h3 class="text-justify text-center font-weight-bold {{user.gender}}">{{user.name}}</h3>
+          </div>
+          <div >
+            <img class="mx-auto d-block" id ="avatar" src="{{user.img}}" alt="" style="width:200px;height:200px ;">
+          </div>
           <!-- <script> function imglk(i, g)
             {
             if (i == null) 
@@ -86,16 +91,32 @@
             let g1 = user["gender"];
            document.getElementById("avatar").src = imglk(i1, g1);}
           </script> -->
-          <p>Gender: {{user.gender}}</p>
+          <div>
+            <h5 id="gender" class="{{user.gender}} text-center"></h5>
+            <script>
+                if ("{{user.gender}}" === "female") {
+                  document.getElementById("gender").innerHTML = "♀ Xinh gái";
+                }
+                else {document.getElementById("gender").innerHTML = "♂ Đẹp trai";}
+            </script>
+          </div>
+          <div class="text-wrap" style="width:13rem;">
+            <p class="{{user.gender}} text-center text-break">"{{user.stt}}"</p>
+          </div>
         </div>       
       </div>
-      <div class="col-8" >
+      <div class="col-8 " >
         {% for u in follow_list %}       
           <div class="flex-row">
             <div class="d-flex flex-row bd-highlight mb-3">
-              <div class="p-2 flex-grow-0 bd-highlight">
-                <h4>{{u.name}}</h4>
-                <img src="{{u.img}}" id="{{u.id}}" alt="" class="img-fluid img-thumbnail avatar" style = "width:100px;height:100px">
+              <div class="p-2 flex-grow-0 bd-highlight col-2">
+                <div>
+                <img src="{{u.img}}" id="{{u.id}}" alt="" class="img-fluid img-thumbnail avatar mx-auto d-block" style = "width:100px;height:100px">
+                </div>
+                <div>
+                <h6 class="text-center {{u.gender}}">{{u.name}}</h6>
+                </div>
+              
                 <!-- <script>
             {let user = "{{u}}"
             let l1 = user["img"];
@@ -105,7 +126,7 @@
                   </script> -->
               </div>
               <div class="p-2 flex-grow-1 bd-highlight">
-                <p>{{u.stt}} </p>
+                <p class="text-wrap {{u.gender}} text-center text-break" >{{u.stt}} </p>
               </div>
               <div class="p-2 flex-grow-0 bd-highlight">
                 <a href="/unfollow/{{u.id}}">Ngừng theo đuôi</a>

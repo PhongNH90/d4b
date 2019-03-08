@@ -134,7 +134,8 @@ def suggest(item,l):
   for i,it in enumerate(l):
     point = get_point(item,i)
     x = {"index": i, "point": point}
-    l_p.append(x)
+    if x["id"] not in item["follow_list"]:
+      l_p.append(x)
   list_arr = arrange(l_p,"point")
   list_sugg = []
   for i in list_arr:
@@ -156,3 +157,7 @@ def place_img(u):
     else:
       u["img"] = "static/boy.png"
   return u
+def place_stt(u):
+  if u["stt"] == None:
+    u["stt"] = "Đang buồn đang chán, ai tán yêu luôn!!!"
+  return u    
