@@ -1,5 +1,4 @@
 from flask import Flask, request, render_template, redirect, flash, session
-import sys
 from models import mlab
 from models.plugin import *
 from models.user import User
@@ -13,7 +12,7 @@ mlab.connect()
 @app.route("/login", methods = ["GET", "POST"])
 def login():
   if request.method == "GET":
-    return render_template("login.html")
+    return render_template("index.html")
   elif request.method == "POST":
     form = request.form
     u = form["username"]
@@ -25,10 +24,10 @@ def login():
         return redirect("/")
       else:
         flash("Invalid Password")
-        return render_template("login.html")
+        return render_template("index.html")
     else:
       flash("User not found")
-      return render_template("login.html")
+      return render_template("index.html")
 
 
 @app.route("/logout")
