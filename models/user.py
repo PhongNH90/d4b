@@ -14,6 +14,7 @@ class User(Document):
     hobby = StringField()
     like = IntField()
     interest = ListField()
+    follow_list = ListField()
     phone = IntField()
     fb = StringField() # facebook
     description =StringField() # tự mô tả ban thân

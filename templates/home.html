@@ -1,20 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<style>
+.female {color: #FF3333}
+.male {color: #0033CC}
+</style>
+
+<head style="height:100px">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+    <nav class="navbar navbar-expand sticky-top navbar-light bg-light border-bottom">
+      <div class="navbar-brand navbar-expand">
+        <img src="/static/logo.png" alt="logo" style="height:50px">
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>            
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav nav-tabs border-0">
+          <li class="nav-item active">
+            <a class="nav-link disable" href="#">Home <span class="sr-only"></span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Suggested</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Profile</a>          
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+        </ul>
+        <!-- <form class="form-inline my-2 my-lg-0"> -->
+          <div class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <script>
+            function myFunction() {
+              location.replace("https://www.w3schools.com")
+            }
+          </script>
+          <button onclick="myFunction()" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </div>
+            
+        <!-- </form> -->
+      </div>
+    </nav>
+    
 </head>
 <body>
-    <form method="POST">
-        <h3>Dating for Everyone</h3>
-        <label>Tên đăng nhập</label>
-        <input type="text" name="username">
-        <label>Mật khẩu</label>
-        <input type="password" name="password">
-        <button>Login</button>
-    </form>
-    
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-2 text-wrap" >
+        <div class="position-fixed">
+          <div>
+            <h3 class="text-justify text-center font-weight-bold {{user.gender}}">{{user.name}}</h3>
+          </div>
+          <div >
+            <img class="mx-auto d-block" id ="avatar" src="{{user.img}}" alt="" style="width:200px;height:200px ;">
+          </div>
+          <!-- <script> function imglk(i, g)
+            {
+            if (i == null) 
+            {
+              if (g == "female") 
+              { 
+                var lk = "static/girl.png";
+              }
+              else 
+              {
+                var lk = "static/boy.png";
+              };
+            } 
+            else 
+            {
+              var lk = i;
+            }
+            return lk;};
+            
+          </script>
+          <script>
+            {let user = "{{user}}";
+            let i1 = user["image"];
+            let g1 = user["gender"];
+           document.getElementById("avatar").src = imglk(i1, g1);}
+          </script> -->
+          <div>
+            <h5 id="gender" class="{{user.gender}} text-center"></h5>
+            <script>
+                if ("{{user.gender}}" === "female") {
+                  document.getElementById("gender").innerHTML = "♀ Xinh gái";
+                }
+                else {document.getElementById("gender").innerHTML = "♂ Đẹp trai";}
+            </script>
+          </div>
+          <div class="text-wrap" style="width:13rem;">
+            <p class="{{user.gender}} text-center text-break">"{{user.stt}}"</p>
+          </div>
+        </div>       
+      </div>
+      <div class="col-8 " >
+        {% for u in follow_list %}       
+          <div class="flex-row">
+            <div class="d-flex flex-row bd-highlight mb-3">
+              <div class="p-2 flex-grow-0 bd-highlight col-2">
+                <div>
+                <img src="{{u.img}}" id="{{u.id}}" alt="" class="img-fluid img-thumbnail avatar mx-auto d-block" style = "width:100px;height:100px">
+                </div>
+                <div>
+                <h6 class="text-center {{u.gender}}">{{u.name}}</h6>
+                </div>
+              
+                <!-- <script>
+            {let user = "{{u}}"
+            let l1 = user["img"];
+            let g1 = user["gender"];
+            let uid = user["id"];
+                    document.getElementById(uid).src = imglk(i1,g1);}
+                  </script> -->
+              </div>
+              <div class="p-2 flex-grow-1 bd-highlight">
+                <p class="text-wrap {{u.gender}} text-center text-break" >{{u.stt}} </p>
+              </div>
+              <div class="p-2 flex-grow-0 bd-highlight">
+                <a href="/unfollow/{{u.id}}">Ngừng theo đuôi</a>
+                <button>Message</button>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="col-2">
+        <div class="position-fixed" > 
+          <h3>Hot boy</h3>
+          {% for u in hotboy %}
+            <h4>{{u.name}}</h4>
+            <img src="{{u.img}}" alt="" style="width:50px;height:50px">
+          {% endfor %}
+          <h3>Hot girl</h3>
+          {% for u in hotgirl %}
+            <h4>{{u.name}}</h4>
+            <img src="{{u.img}}" alt="" style = "width:50px;height:50px">
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
