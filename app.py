@@ -4,59 +4,63 @@ from models.plugin import *
 from models.user import User
 
 app = Flask(__name__)
+app.config["SECRET_KEY"] = "aajlajfkaf"
 mlab.connect()
 
 
 @app.route("/register", methods = ["GET", "POST"])
 def register():
-  if request.method == "GET":
-    return render_template("register.html")
-  else:
-    form = request.form
-    e = form["em"]  
-    p = form["password"]
-    name = form["name"]
-    u = form["username"]
-    g = form["gender"]
-    b = form["birth"]
-    i = form["img"]
-    c = form["city"]
-    h = form["hobby"]
-    phone = form["phone"]
-    des = form["description"]
-    user_object = User.objects()
-    if u in user_object:
-      flash("Tên người dùng đã tồn tại")
-      return render_template("/date4everyone")
+  if "token" not in session:
+    if request.method == "GET":
+      return render_template("register.html")
     else:
-      pass
-    u = User(em=e, password=p, name=name, username=u, gender=g, birth=b, img=i, city=c, hobby=h, phone="+84"+phone, description=des)
-    u.save()
-    gmail = GMail('nguyenminhhieu2508@gmail.com','nguyenminhhieu')
-    msg = Message('text', to = e, html = '<a href="http://127.0.0.1:5000/date4everyone">Xác nhận tài khoản</a>')
-    gmail.send(msg)
-    return redirect("/login")
+      form = request.form
+      username = form["username"]  
+      p = form["password"]
+      name = form["name"]
+      u = form["username"]
+      g = form["gender"]
+      b = form["birth"]
+      i = form["img"]
+      c = form["city"]
+      h = form["hobby"]
+      phone = form["phone"]
+      des = form["description"]
+      user_object = User.objects()
+      if u in user_object:
+        flash("Tên người dùng đã tồn tại")
+        return render_template("/date4everyone")
+      else:
+        pass
+      u = User(em=e, password=p, name=name, username=u, gender=g, birth=b, img=i, city=c, hobby=h, phone="+84"+phone, description=des)
+      u.save()
+      gmail = GMail('nguyenminhhieu2508@gmail.com','nguyenminhhieu')
+      msg = Message('text', to = e, html = '<a href="http://127.0.0.1:5000/date4everyone">Xác nhận tài khoản</a>')
+      gmail.send(msg)
+      return redirect("/login")
 
 @app.route("/login", methods = ["GET", "POST"])
 def login():
-  if request.method == "GET":
-    return render_template("index.html")
-  elif request.method == "POST":
-    form = request.form
-    u = form["username"]
-    p = form["password"]
-    user = User.objects(username=u).first()
-    if user != None:
-      if user.password == p:
-        session["token"] = str(user["id"])
-        return redirect("/")
+  if "token" not in session:
+    if request.method == "GET":
+      return render_template("login.html")
+    elif request.method == "POST":
+      form = request.form
+      u = form["username"]
+      p = form["password"]
+      user = User.objects(username=u).first()
+      if user != None:
+        if user.password == p:
+          session["token"] = str(user["id"])
+          return redirect("/")
+        else:
+          flash("Invalid Password")
+          return render_template("login.html")
       else:
-        flash("Invalid Password")
-        return render_template("index.html")
-    else:
-      flash("User not found")
-      return render_template("index.html")
-
+        flash("User not found")
+        return render_template("login.html")
+  else:
+    return redirect("/")
 
 @app.route("/logout")
 def logout():
