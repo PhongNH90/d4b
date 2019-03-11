@@ -1,108 +1,103 @@
-*{margin: 0; padding: 0;}
-h1,h2,h3,h4,h5,h6,ul,li,p{margin: 0;padding: 0;}
-li{list-style: none; float: left;}
-a{text-decoration: none}
+@import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
 
-.row{
-    margin: 0px;
-    padding: 0px;
-
+.login-block{
+    background: #DE6262;
+    background: -webkit-linear-gradient(to bottom, #FFB88C, #DE6262);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #FFB88C, #DE6262); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    float:left;
+    width:100%;
+    padding : 50px 0;
 }
 
-@font-face{
-    font-family: Lato-Bold;
-    src: url("../fonts/Lato-Bold.ttf") format("truetype");
+.banner-sec{
+    background:url(https://static.pexels.com/photos/33972/pexels-photo.jpg)  no-repeat left bottom; 
+    background-size:cover; 
+    min-height:500px; 
+    border-radius: 0 10px 10px 0; 
+    padding:0;
 }
 
-@font-face{
-    font-family: Lato-Light;
-    src: url("../fonts/Lato-Light.ttf") format("truetype");
+.container{
+    background:#fff; 
+    border-radius: 10px; 
+    box-shadow:15px 20px 0px rgba(0,0,0,0.1);
 }
 
-@font-face{
-    font-family: Lato-Regular;
-    src: url("../fonts/Lato-Regular.ttf") format("truetype");
+.carousel-inner{
+    border-radius:0 10px 10px 0;
 }
 
-@font-face{
-    font-family: Lato-Italic;
-    src: url("../fonts/Lato-Italic.ttf") format("truetype");
+.carousel-caption{
+    text-align:left; 
+    left:5%;
 }
 
-.bold{font-family: Lato-Bold;}
-.light{font-family: Lato-Light;}
-.regular{font-family: Lato-Regular;}
-.italic{font-family: Lato-Italic;}
-.white{color: white}
-
-body{background: #EE8D77;}
-
-.container-max{
-    max-width: 1024px;
-    margin-top: 20px;
+.login-sec{
+    padding: 50px 30px; 
+    position:relative;
 }
 
-.header-top{
-    background: #F8F9FA;
+.login-sec .copy-text{
+    position:absolute; 
+    width:80%; 
+    bottom:20px; 
+    font-size:13px; 
+    text-align:center;
 }
 
-/* ket thuc CSS header-top */
-/* chuyen sang CSS section */
-
-#portfolio{
-    background: #2d3e50;
-    text-align: center;
-    padding: 30px 0px;
+.login-sec .copy-text i{
+    color:#FEB58A;
 }
 
-.portfolio-title{
-    padding-bottom: 30px;
+.login-sec .copy-text a{
+    color:#E36262;
 }
 
-.title-port span{
-    font-size: 35px;
-    padding: 10px 0px;
+.login-sec h2{
+    margin-bottom:30px; 
+    font-weight:800; 
+    font-size:30px; 
+    color: #DE6262;
 }
 
-.title-port p{
-    font-size: 18px;
-    padding: 0px 0px;
+.login-sec h2:after{
+    content:" "; 
+    width:100px; 
+    height:5px; 
+    background:#FEB58A; 
+    display:block; 
+    margin-top:20px; 
+    border-radius:3px; 
+    margin-left:auto;
+    margin-right:auto}
+
+.btn-login{
+    background: #DE6262; 
+    color:#fff; 
+    font-weight:600;
 }
 
-
-
-
-
-
-/* bat dau Footer */
-.footer{
-    background: #2d3e50;
-    padding: 20px 0px;
+.banner-text{
+    width:70%; 
+    position:absolute; 
+    bottom:40px; 
+    padding-left:20px;
 }
 
-.footer-left{
-    font-size: 14px;
-    color: #ffffff;
+.banner-text h2{
+    color:#fff; 
+    font-weight:600;
 }
 
-.footer-left p{
-    line-height: 45px;
+.banner-text h2:after{
+    content:" "; 
+    width:100px; 
+    height:5px; 
+    background:#FFF; 
+    display:block; 
+    margin-top:20px; 
+    border-radius:3px;
 }
-
-.footer-right a{
-    background: #2d3e50;
-    color: #ffffff;
-    float: right;
-    padding: 0px;
-    text-decoration: none;
+.banner-text p{
+    color:#fff;
 }
-
-.footer-right a:hover{
-    color: #000000;
-}
-
-/* ket thuc CSS footer */
-
-
-
-

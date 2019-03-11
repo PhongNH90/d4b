@@ -48,36 +48,22 @@ body{background: #EE8D77;}
 
 /* ket thuc CSS header-top */
 /* chuyen sang CSS header-title */
-
 .header-title{
-    background: url(../img/background.png);
+    padding: 30px 0px;
+    background: #ffffff;
     text-align: center;
-
-}
-
-.title{
-    padding: 40px 0px;
-    
-}
-
-.title span{
-    font-size: 55px;
-    padding: 20px 0px;
 }
 
 .title p{
-    font-size: 28px;
-    padding: 20px 0px;
+    font-size: 18px;
+    padding: 0px 0px;
+    color: #8b8b8b;
 }
 
-.button{
-    /* background: #1bbc9b; */
-    background:#EE8D77;
 
-}
+/* Slideshow khong can CSS */
+/* chuyen sang CSS Avatar */
 
-/* ket thuc CSS header-title */
-/* chuyen sang CSS portfolio */
 #portfolio{
     background: #ffffff;
     text-align: center;
@@ -88,9 +74,13 @@ body{background: #EE8D77;}
     padding-bottom: 30px;
 }
 
+.text-center{
+    padding-bottom: 15px;
+}
+
 .title-port span{
     font-size: 35px;
-    padding: 10px 0px;
+    padding: 20px 0px;
 }
 
 .title-port p{
@@ -98,69 +88,64 @@ body{background: #EE8D77;}
     padding: 0px 0px;
 }
 
-.portfolio-list-btn{
-    margin: 0 20%;
-    padding-bottom: 20px;
-}
-
-.portfolio-btn{
-    padding: 5px 0px;
-}
-
-.portfolio-btn a{
-    color: #ffffff
-}
-
-.portfolio-btn a:hover{
-    color: #000000
-}
-
-.portfolio-icon{
-    padding: 15px 0px
+.icon{
+    padding: 15px 0px;
+    text-align: center;
 }
 
 /* ket thuc CSS portfolio */
 /* chuyen sang CSS about us */
 
-#about-us{
-    /* background: #1bbc9b; */
-    background: #1bbc9b ;
-    text-align: center;
-    padding: 20px;
+.interest-title{
+    font-size: 20px;
+    padding: 20px 0px;
+    color: #4b4b4b;
 }
 
-.about-title{
-    padding-bottom: 25px;
+.interest-btn{
+    padding-right: 10px;
 }
 
-.title-ab span{
-    font-size: 35px;
-    padding: 10px 0px;
+
+html,body{
+    height: 100%;
+}
+.container{
+   height: 100%;
+   align-content: center;
 }
 
-.title-ab p{
-    font-size: 18px;
-    padding: 0px 0px;
-}
-.about-post{
-    padding: 10px 0px;
-}
-
-.about-text{
-    background: #ffffff;
-    width: 200px;
-    margin: 0 auto;
-    padding: 10px 5px;
+.image_outer_container{
+   margin-top: auto;
+   margin-bottom: auto;
+   border-radius: 50%;
+   position: relative;
 }
 
-.about-text span{
-    font-size:  18px;
+.image_inner_container{
+   border-radius: 50%;
+   padding: 5px;
+background: #833ab4; 
+background: -webkit-linear-gradient(to bottom, #fcb045, #fd1d1d, #833ab4); 
+background: linear-gradient(to bottom, #fcb045, #fd1d1d, #833ab4);
+}
+.image_inner_container img{
+   height: 200px;
+   width: 200px;
+   border-radius: 50%;
+   border: 5px solid white;
 }
 
-.about-text p{
-    font-size: 16px;
+.image_outer_container .green_icon{
+ background-color: #4cd137;
+ position: absolute;
+ right: 0px;
+ bottom: 0px;
+ height: 20px;
+ width: 20px;
+ border:5px solid white;
+ border-radius: 50%;
 }
-
 /* ket thuc CSS about us */
 /* bat dau CSS contact us */
 
@@ -215,7 +200,7 @@ body{background: #EE8D77;}
 }
 
 /* ket thuc CSS contact us */
-/* bat dau Footer */
+/* ket thuc Footer */
 .footer{
     background: #2d3e50;
     padding: 20px 0px;

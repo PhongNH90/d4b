@@ -34,11 +34,12 @@ a{text-decoration: none}
 .regular{font-family: Lato-Regular;}
 .italic{font-family: Lato-Italic;}
 .white{color: white}
-body{background: #050505;}
+
+body{background: #EE8D77;}
 
 .container-max{
     max-width: 1024px;
-    margin-top: 20px;
+    margin-top: 0px;
 }
 
 .header-top{
@@ -46,25 +47,10 @@ body{background: #050505;}
 }
 
 /* ket thuc CSS header-top */
-/* chuyen sang CSS header-title */
-.header-title{
-    padding: 30px 0px;
-    background: #ffffff;
-    text-align: center;
-}
-
-.title p{
-    font-size: 18px;
-    padding: 0px 0px;
-    color: #8b8b8b;
-}
-
-
-/* Slideshow khong can CSS */
-/* chuyen sang CSS Avatar */
+/* chuyen sang CSS section */
 
 #portfolio{
-    background: #ffffff;
+    background: url("../img/bg1.jpg");
     text-align: center;
     padding: 30px 0px;
 }
@@ -73,13 +59,9 @@ body{background: #050505;}
     padding-bottom: 30px;
 }
 
-.text-center{
-    padding-bottom: 15px;
-}
-
 .title-port span{
     font-size: 35px;
-    padding: 20px 0px;
+    padding: 10px 0px;
 }
 
 .title-port p{
@@ -87,81 +69,16 @@ body{background: #050505;}
     padding: 0px 0px;
 }
 
-.icon{
-    padding: 15px 0px;
-    text-align: center;
+.bg-inside{
+    background: #2d3e50;
 }
 
-/* ket thuc CSS portfolio */
-/* chuyen sang CSS about us */
-
-.interest-title{
-    font-size: 20px;
-    padding: 20px 0px;
-    color: #4b4b4b;
-}
-
-.interest-btn{
-    padding-right: 10px;
+.bg-form{
+    background: #ffffff;
 }
 
 
-
-/* ket thuc CSS about us */
-/* bat dau CSS contact us */
-
-#contact{
-    background: #ecf0f1;
-    padding: 50px 0px;
-}
-
-.contact-title{
-    text-align: center;
-    padding-bottom: 50px
-}
-
-.title-co span{
-    font-size: 35px;
-    padding: 10px 0px;
-}
-
-.title-co p{
-    font-size: 18px;
-    padding: 0px 0px;
-}
-
-.form-left{
-    padding: 0px 40px;
-}
-
-.form-left input{
-    width: 40%;
-    float: left;
-    margin-bottom: 20px;
-}
-
-.form-email{
-    margin-left: 20%;
-}
-
-.form-left textarea{
-    margin-bottom: 20px;
-}
-
-.form-left button{
-    float: right;
-}
-
-.form-right{
-    padding: 0px;
-}
-
-.form-right p{
-    line-height: 28px;
-}
-
-/* ket thuc CSS contact us */
-/* ket thuc Footer */
+/* bat dau Footer */
 .footer{
     background: #2d3e50;
     padding: 20px 0px;
