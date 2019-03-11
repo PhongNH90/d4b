@@ -16,22 +16,13 @@ def register():
     else:
       form = request.form
       username = form["username"]  
-      p = form["password"]
-      name = form["name"]
-      u = form["username"]
-      g = form["gender"]
-      b = form["birth"]
-      i = form["img"]
-      c = form["city"]
-      h = form["hobby"]
-      phone = form["phone"]
-      des = form["description"]
-      user_object = User.objects()
-      if u in user_object:
+      pass = form["password"]
+      if User.objects(username=username):
         flash("Tên người dùng đã tồn tại")
+        if not isalnum(username):
+          flash("Tên chỉ chứa ký tự chữ cái hoặc số")
         return render_template("/date4everyone")
       else:
-        pass
       u = User(em=e, password=p, name=name, username=u, gender=g, birth=b, img=i, city=c, hobby=h, phone="+84"+phone, description=des)
       u.save()
       gmail = GMail('nguyenminhhieu2508@gmail.com','nguyenminhhieu')
@@ -140,7 +131,9 @@ def suggest():
 
 @app.route("/profile/<uid>")
 def profile(uid):
-  return render_template("profile.html")
+  if "token" in session:
+    user =  user.objects.with_id("sesion")
+    return render_template("profile.html", user = user)
     
 
 if __name__ == '__main__':

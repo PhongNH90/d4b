@@ -170,3 +170,7 @@ region = {
   "Nam" : ["Bình Phước", "Bình Dương", "Đồng Nai", "Tây Ninh", "Bà Rịa-Vũng Tàu", "TP HCM", "Long An", "Đồng Tháp", "Tiền Giang", "An Giang", "Bến Tre", "Vĩnh Long", "Trà Vinh", "Hậu Giang", "Kiên Giang", "Sóc Trăng", "Bạc Liêu", "Cà Mau", "Cần Thơ"]
 
 }
+def check_username(n):
+  if User.objects(name) != None:
+    fl = "Username exist"
+  else if isalnum
