@@ -93,7 +93,7 @@ def home():
     hotgirl = []
     for u in hot_girl:
       hotgirl.append(place_img(u))
-    return render_template("home.html", user = user, follow_list=follow_list, hotboy=hotboy, hotgirl= hotgirl )
+    return render_template("index.html", user = user, follow_list=follow_list, hotboy=hotboy, hotgirl= hotgirl )
   else:
     return redirect("/login")
 
@@ -137,6 +137,10 @@ def suggest():
       list_u = User.objects(gender="male")
     suggest_list = suggest(user,list_u)
     return render_template("suggest.html",suggest_list=suggest_list)
+
+@app.route("/profile/<uid>")
+def profile(uid):
+  return render_template("profile.html")
     
 
 if __name__ == '__main__':
