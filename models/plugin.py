@@ -173,4 +173,8 @@ region = {
 def check_username(n):
   if User.objects(name) != None:
     fl = "Username exist"
-  else if isalnum
+  elif not n.isalnum():
+    fl = "Username only include letter and number"
+  else:
+    fl = True
+  return fl

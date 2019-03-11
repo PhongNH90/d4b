@@ -15,20 +15,64 @@ def register():
       return render_template("register.html")
     else:
       form = request.form
-      username = form["username"]  
-      pass = form["password"]
-      if User.objects(username=username):
-        flash("Tên người dùng đã tồn tại")
-        if not isalnum(username):
-          flash("Tên chỉ chứa ký tự chữ cái hoặc số")
-        return render_template("/date4everyone")
+      username = form["username"].lower() 
+      password = form["password"]
+      ck = check_username(username)
+      if ck != True:
+        flash (ck)
+        return render_template("register.html")
       else:
-      u = User(em=e, password=p, name=name, username=u, gender=g, birth=b, img=i, city=c, hobby=h, phone="+84"+phone, description=des)
+        u = User(username=username, password=password, active=False )
+        u.save()
+        return render_template("get_info.html")
+  else:
+    return render_template("home.html")
+
+@app.route("/register", methods = ["GET", "POST"])
+def register():
+  if "token" not in session:
+    if request.method == "GET":
+      return render_template("register.html")
+    else:
+      form = request.form
+      username = form["username"].lower() 
+      password = form["password"]
+      ck = check_username(username)
+      if ck != True:
+        flash (ck)
+        return render_template("register.html")
+      else:
+        u = User(username=username, password=password, active=False )
+        u.save()
+        session["token"] = str(user["id"])
+        return render_template("get_info.html")
+  else:
+    return render_template("home.html")
+
+@app.route("/get-info", methods = ["GET", "POST"])
+def get_info():
+  if "token" in session:
+    user = User.objects.with_id(session["token"])
+    if request.method == "GET":
+      return render_template("get_info.html")
+    else:
+      form = request.form
+      email = form["email"].lower() 
+      facebook = form["facebook"]
+      phone = form["phone"].lower() 
+      d_birth = form["d_birth"]
+      m_birth = form["m_birth"]
+      y_birth = form["m_birth"]
+      city = form["city"]
+      img = form["avatar"]
+      description = form["description"]
+      
+      u = User(em=email, facebook=facebook, phone active=False )
       u.save()
-      gmail = GMail('nguyenminhhieu2508@gmail.com','nguyenminhhieu')
-      msg = Message('text', to = e, html = '<a href="http://127.0.0.1:5000/date4everyone">Xác nhận tài khoản</a>')
-      gmail.send(msg)
-      return redirect("/login")
+      session["token"] = str(user["id"])
+      return render_template("get_info.html")
+  else:
+    return render_template("login.html")        
 
 @app.route("/login", methods = ["GET", "POST"])
 def login():
@@ -37,7 +81,7 @@ def login():
       return render_template("login.html")
     elif request.method == "POST":
       form = request.form
-      u = form["username"]
+      u = form["username"].lower()
       p = form["password"]
       user = User.objects(username=u).first()
       if user != None:
