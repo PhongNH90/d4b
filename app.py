@@ -115,13 +115,22 @@ def logout():
   else:
     return redirect("/login")
 
-@app.route("/")
+@app.route("/home")
 def home():
   if "token" in session:
     user = User.objects.with_id(session["token"])
     user = place_img(user)
     user = place_stt(user)
     follow_list = []
+    if user["gender"] == "male":
+      suggest_list = User.objects(gender="female")
+      x = "Female ♀"
+      y = "Male ♂"
+    else:
+      suggest_list = User.objects(gender="male")
+      x = "Male ♂"
+      y = "Female ♀"
+    # suggest_list = suggest(user,list_u)
     if user["follow_list"] != None:
       for i in user["follow_list"]:
         u = User.objects.with_id(i)
@@ -139,7 +148,7 @@ def home():
     # for u in hot_girl:
     #   hotgirl.append(place_img(u))
     # return render_template("index.html", user = user, follow_list=follow_list, hotboy=hotboy, hotgirl= hotgirl )
-    return render_template("index.html", user = user, follow_list=follow_list)
+    return render_template("home.html", user = user, suggest_list=suggest_list, x = x, y=y)
   else:
     return redirect("/login")
 
@@ -187,9 +196,51 @@ def suggest():
 @app.route("/profile/<uid>")
 def profile(uid):
   if "token" in session:
-    user =  user.objects.with_id("sesion")
-    return render_template("profile.html", user = user)
-    
+    user =  User.objects.with_id(uid)
+    if user["gender"] == "male":
+      x = "Male ♂"
+    else:
+      x = "Female ♀"
+    return render_template("index6.html", user = user,x=x)
+  else:
+    return redirect("/login")
+
+@app.route("/")
+def page():
+  if "token" in session:
+    user = User.objects.with_id(session["token"])
+    return render_template("index.html",user=user) 
+  else:
+    return redirect("/login")   
+
+@app.route("/update")
+def update():
+  if "token" in session:
+    user = User.objects.with_id(session["token"])
+    if request.method == "GET":
+      return render_template("update_info.html",user=user)
+    else:
+      form = request.form
+      name = form["name"]
+      gender = form["gender"]
+      email = form["email"].lower() 
+      facebook = form["facebook"]
+      phone = form["phone"] 
+      birth = form["birth"]
+      city = form["city"]
+      img = form["avatar"]
+      description = form["description"]
+      sport = form["sport"]
+      music = form["music"]
+      book = form["book"]
+      movie = form["movie"]
+      food = form["food"]
+      drink = form["drink"]
+      # if email == None or 
+      user.update(set__name=name, set__gender=gender, set__em=email, set__fb=facebook, set__phone=phone, set__birth=birth,set__city=city, set__img=img,set__description=description,set__active=1,set__sport=sport,set__music=music,set__book=book,set__movie=movie,set__food=food,set__drink=drink)
+      return redirect("/")
+  else:
+    return redirect("/login")    
 
 if __name__ == '__main__':
   app.run(debug=True)

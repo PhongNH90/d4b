@@ -12,7 +12,10 @@
       color: white;
       padding: 15px;
     }
+    .male {color:#103667}
+    .female {color:#B2001F}
   </style>
+  
   
 </head>
 <body>
@@ -24,14 +27,15 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>                        
             </button>
-            <a href="#"><img src="static/icon/logo.png"  height="50"/></a>
+            <a href="/"><img src="static/icon/logo.png"  height="50"/></a>
           </div>
           <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
               <li class="active"><a href="#">Home</a></li>
-              <li><a href="#">Messages</a></li>
+              <li><a href="/profile/{{user.id}}">Profile</a></li>
+              <li><a href="/logout">Logout</a></li>
             </ul>
-            <form class="navbar-form navbar-right" role="search">
+            <!-- <form class="navbar-form navbar-right" role="search">
               <div class="form-group input-group">
                 <input type="text" class="form-control" placeholder="Search..">
                 <span class="input-group-btn">
@@ -40,9 +44,9 @@
                   </button>
                 </span>        
               </div>
-            </form>
+            </form> -->
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
+              <li><a href="/update"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
             </ul>
           </div>
         </div>
@@ -53,28 +57,37 @@
       <div class="row">
         <div class="col-sm-3 well">
           <div class="well">
-            <p><a href="#">My Profile</a></p>
-            <img src="images/logo.test.jpg" class="img-circle" height="65" width="65" alt="Avatar">
+            <h3 class={{user.gender}}>{{user.name}}</h3>
+            <p id="ugender" class="{{user.gender}}">{{y}}</p>
+            <!-- <script>
+                {
+                  var str = document.getElementById("ugender").innerHTML; 
+                  var res = str.replace("male", "Male ♂");
+                  var res = str.replace("female", "Female ♀");
+                  document.getElementById("ugender").innerHTML = res;
+                    }
+                    </script> -->
+            <img src="{{user.img}}" class="img-circle" height="65" width="65" alt="Avatar">
           </div>
           <div class="well">
             <p><a href="#">Interests</a></p>
             <p>
-              <span class="label label-default">Reading</span>
-              <span class="label label-primary">Sports</span>
-              <span class="label label-success">Music</span>
-              <span class="label label-info">Gosship</span>
-              <span class="label label-warning">Gaming</span>
-              <span class="label label-danger">Friends</span>
+              <span class="label label-default">{{user.sport}}</span>
+              <span class="label label-primary">{{user.music}}</span>
+              <span class="label label-success">{{user.book}}</span>
+              <span class="label label-info">{{user.movie}}</span>
+              <span class="label label-warning">{{user.food}}</span>
+              <span class="label label-danger">{{user.drink}}</span>
             </p>
           </div>
           <div class="alert alert-success fade in">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-            <p><strong>Ey!</strong></p>
-            People are looking at your profile. Find out who.
+            <p><strong>Hello World!</strong></p>
+            {{user.description}}
           </div>
-          <p><a href="#">Link</a></p>
-          <p><a href="#">Link</a></p>
-          <p><a href="#">Link</a></p>
+          <!-- <p><a href="{{user.em}}">My email</a></p>
+          <p><a href="{{user.fb}}">My facebook</a></p>
+          <p><a href="#">Link</a></p> -->
         </div>
         <div class="col-sm-7">
         
@@ -82,20 +95,21 @@
             <div class="col-sm-12">
               <div class="panel panel-default text-left">
                 <div class="panel-body">
-                  <p contenteditable="true">Status: Just for fun</p>
-                  <button type="button" class="btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-thumbs-up"></span> Like
-                  </button>     
+                  <!-- <p contenteditable="true">Status: Just for fun</p>
+                  <button type="button" class="btn btn-default btn-sm"> -->
+                      <h3 contenteditable="true">Some people you want to meet</h3>
+                    <!-- <span class="glyphicon glyphicon-thumbs-up"></span> Like
+                  </button>      -->
                 </div>
               </div>
             </div>
           </div>
           
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-sm-3">
               <div class="well">
               <p>Becks</p>
-              <img src="img/ava.test1.jpg" class="img-circle" height="55" width="55" alt="Avatar">
+              <img src="static/img/ava.test1.jpg" class="img-circle" height="55" width="55" alt="Avatar">
               </div>
             </div>
             <div class="col-sm-9">
@@ -108,7 +122,7 @@
             <div class="col-sm-3">
               <div class="well">
               <p>Ronaldo</p>
-              <img src="img/ava.test2.jpg" class="img-circle" height="55" width="55" alt="Avatar">
+              <img src="static/img/ava.test2.jpg" class="img-circle" height="55" width="55" alt="Avatar">
               </div>
             </div>
             <div class="col-sm-9">
@@ -121,7 +135,7 @@
             <div class="col-sm-3">
               <div class="well">
               <p>Gates</p>
-              <img src="img/ava3.jpg" class="img-circle" height="55" width="55" alt="Avatar">
+              <img src="static/img/ava3.jpg" class="img-circle" height="55" width="55" alt="Avatar">
               </div>
             </div>
             <div class="col-sm-9">
@@ -134,7 +148,7 @@
             <div class="col-sm-3">
               <div class="well">
               <p>Trump</p>
-              <img src="img/ava.test4.jpg" class="img-circle" height="55" width="55" alt="Avatar">
+              <img src="static/img/ava.test4.jpg" class="img-circle" height="55" width="55" alt="Avatar">
               </div>
             </div>
             <div class="col-sm-9">
@@ -143,11 +157,27 @@
               </div>
             </div>
           </div>     
-        </div>
-        <div class="col-sm-2 well">
+        </div> -->
+        {% for u in suggest_list %}
+        <div class="row">
+            <div class="col-sm-3">
+              <div class="well">
+              <h4 class={{u.gender}}><a href="/profile/{{u.id}}">{{u.name}}</a></h4>
+              <h6 class="{{u.gender}}" >{{x}}</h6>
+              <img src="{{u.img}}" class="img-circle" height="55" width="55" alt="Avatar">
+              </div>
+            </div>
+            <div class="col-sm-9">
+              <div class="well">
+                <p>{{u.description}}</p>
+              </div>
+            </div>
+          </div>
+                  {% endfor %}
+        <!-- <div class="col-sm-2 well">
           <div class="thumbnail">
             <p>Upcoming Events:</p>
-            <img src="img/bg.png" alt="Paris" width="400" height="300">
+            <img src="static/img/bg.png" alt="Paris" width="400" height="300">
             <p><strong>Paris</strong></p>
             <p>Fri. 27 November 2015</p>
             <button class="btn btn-primary">Info</button>
@@ -158,12 +188,14 @@
           <div class="well">
             <p>ADS</p>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
 </div>
+
+
     <footer class="container-fluid text-center">
-      <p>Footer Text</p>
+      <p></p>
     </footer>
 
 </body>

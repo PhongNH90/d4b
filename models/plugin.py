@@ -97,34 +97,34 @@ def arrange(l,k):
     l1.remove(i_max)
   return l_arr
 def get_point(i1,i2):
-  if i1["gender"] == "male":
-    if i1["age"] - i2["age"] > 2:
-      p = 0
-    else:
-      if (i1["age"] - i2["age"]) in [1,2,4]:
-        p1 = 1
-      elif i1["age"] == i2["age"]:
-        p1 = 0.5
-      else:
-        p1 = 0
-      if (i1["city"],i2["city"]) in region["Bắc"] or (i1["city"],i2["city"]) in region["Trung"] or (i1["city"],i2["city"]) in region["Nam"]:
-        p2 = 1
-      else:
-        p2 = 0
-      p3 = count_item(i1,i2)
-      p = p1*2 + p2*2 + p3
-  else:   
-    if i1["age"] - i2["age"] < -2:
-      p = 0
-    else: 
-      if (i2["age"] - i1["age"]) in [1,2,4]:
-        p1 = 1
-      elif i1["age"] == i2["age"]:
-        p1 = 0.5
-      else:
-        p1 = 0
-      p3 = min(3, count_item(i1,i2))
-      p = p1*2 + p2*2 + p3
+  # if i1["gender"] == "male":
+  #   if i1["age"] - i2["age"] > 2:
+  #     p1 = 0
+  #   else:
+  #     if (i1["age"] - i2["age"]) in [1,2,4]:
+  #       p1 = 1
+  #     elif i1["age"] == i2["age"]:
+  #       p1 = 0.5
+  #     else:
+  #       p1 = 0
+  # if (i1["city"],i2["city"]) in region["Bắc"] or (i1["city"],i2["city"]) in region["Trung"] or (i1["city"],i2["city"]) in region["Nam"]:
+  #   p2 = 1
+  # else:
+  #   p2 = 0
+  # p3 = count_item(i1,i2)
+  # p = 1*2 + p2*2 + p3
+  # else:   
+  #   if i1["age"] - i2["age"] < -2:
+  #     p = 0
+  #   else: 
+  #     if (i2["age"] - i1["age"]) in [1,2,4]:
+  #       p1 = 1
+  #     elif i1["age"] == i2["age"]:
+  #       p1 = 0.5
+  #     else:
+  #       p1 = 0
+      # p3 = min(3, count_item(i1,i2))
+      # p = p1*2 + p2*2 + p3
   return p
 def suggest(item,l):
   l_p = []
