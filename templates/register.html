@@ -4,143 +4,109 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="static/register.css">
-    <title>Document</title>
-</head>
-<body style="background-color: pink;">
-    <div id="root">
-        <form method="POST">
-            <div class="title">
-                <h3>Dating For Everyone</h3>
-            </div>
-            
-            <div class="form_input">
-                <label>Email</label>
-                <input type="text" name="em">
-            </div>
+    <title>Page 2</title>
+    <link rel="stylesheet" href="static/css/bootstrap.css">
+    <link rel="stylesheet" href="static/css/index2.css">
+    <script src="static/js/jquery-3.3.1.min.js"></script>
+    <script src="static/js/bootstrap.js"></script>
     
-            <div class="form_input">
-                <label>Mật Khẩu</label>
-                <input type="password" name="password">
-            </div>
-            
-            <div class="form_input">
-                <label>Họ và tên</label>
-                <input type="text", name="name">
-            </div>
+</head>
+<body>
+    <header>
+        <div class="container container-max">
+            <div class="row header-top">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <a href="#"><img src="static/icon/logo.png"  height="50"/></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Sign up</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/login">Log in</a>
+                            </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div> 
+        </div> 
+    </header>
+    
+    <section class="login-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 login-sec">
+                    <h2 class="text-center">Sign-up</h2>
+                    <form class="login-form" method="POSt">
+                        <div class="form-group" >
+                            <label for="exampleInputEmail1" class="text-uppercase">Username</label>
+                            <input type="text" class="form-control" placeholder="" name="username">
+                        </div>
 
-            <div class="form_input">
-                <label>Tên hiển thị</label>
-                <input type="text", name="username">
-            </div>
+                        <div class="form-group" method = post>
+                            <label for="exampleInputPassword1" class="text-uppercase">Password</label>
+                            <input type="password" class="form-control" placeholder="" name="password">
+                        </div>
 
-            <div class="form_input">
-                <label>Giới Tính</label> <br>
-                <input type="radio" name="gender" value="male" checked> Nam
-                <input type="radio" name="gender" value="female" checked> Nữ
-            </div>
+                        <div class="form-check">
+                            <button type="submit" class="btn btn-login float-right">Create</button>
+                        </div>
+                        
+                    </form>
+                </div>
 
-            <div class="form_input">
-                <label>Ngày sinh</label>
-                <input type="date" name="birth" min="1998-01-02">
-            </div>
+                <div class="col-md-8 banner-sec">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner" role="listbox">
+                            <div class="carousel-item active">
+                                <img class="d-block img-fluid" src="img/dat1.jpg" alt="First slide">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <div class="banner-text">
+                                        <h2>This is Special Capture</h2>
+                                        <p>When people come and share the fabulour emotions to each other</p>
+                                    </div>    
+                                </div>
+                            </div>
 
-            <div class="form_input">
-                <label>Nhập link ảnh của bạn</label>
-                <input type="text" name="img">
-            </div>
+                            <div class="carousel-item">
+                                <img class="d-block img-fluid" src="img/dat2.jpg" alt="First slide">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <div class="banner-text">
+                                        <h2>This is Special Capture</h2>
+                                        <p>When people come and share the fabulour emotions to each other</p>
+                                    </div>    
+                                </div>
+                            </div>
 
-            <div class="form_input">
-                <label>Thành Phố</label>
-                <select name= "city">
-                        <option value="An Giang">An Giang
-                        <option value="Bà Rịa - Vũng Tàu">Bà Rịa - Vũng Tàu
-                        <option value="Bắc Giang">Bắc Giang
-                        <option value="Bắc Kạn">Bắc Kạn
-                        <option value="Bạc Liêu">Bạc Liêu
-                        <option value="Bắc Ninh">Bắc Ninh
-                        <option value="Bến Tre">Bến Tre
-                        <option value="Bình Định">Bình Định
-                        <option value="Bình Dương">Bình Dương
-                        <option value="Bình Phước">Bình Phước
-                        <option value="Bình Thuận">Bình Thuận
-                        <option value="Bình Thuận">Bình Thuận
-                        <option value="Cà Mau">Cà Mau
-                        <option value="Cao Bằng">Cao Bằng
-                        <option value="Đắk Lắk">Đắk Lắk
-                        <option value="Đắk Nông">Đắk Nông
-                        <option value="Điện Biên">Điện Biên
-                        <option value="Đồng Nai">Đồng Nai
-                        <option value="Đồng Tháp">Đồng Tháp
-                        <option value="Đồng Tháp">Đồng Tháp
-                        <option value="Gia Lai">Gia Lai
-                        <option value="Hà Giang">Hà Giang
-                        <option value="Hà Nam">Hà Nam
-                        <option value="Hà Tĩnh">Hà Tĩnh
-                        <option value="Hải Dương">Hải Dương
-                        <option value="Hậu Giang">Hậu Giang
-                        <option value="Hòa Bình">Hòa Bình
-                        <option value="Hưng Yên">Hưng Yên
-                        <option value="Khánh Hòa">Khánh Hòa
-                        <option value="Kiên Giang">Kiên Giang
-                        <option value="Kon Tum">Kon Tum
-                        <option value="Lai Châu">Lai Châu
-                        <option value="Lâm Đồng">Lâm Đồng
-                        <option value="Lạng Sơn">Lạng Sơn
-                        <option value="Lào Cai">Lào Cai
-                        <option value="Long An">Long An
-                        <option value="Nam Định">Nam Định
-                        <option value="Nghệ An">Nghệ An
-                        <option value="Ninh Bình">Ninh Bình
-                        <option value="Ninh Thuận">Ninh Thuận
-                        <option value="Phú Thọ">Phú Thọ
-                        <option value="Quảng Bình">Quảng Bình
-                        <option value="Quảng Bình">Quảng Bình
-                        <option value="Quảng Ngãi">Quảng Ngãi
-                        <option value="Quảng Ninh">Quảng Ninh
-                        <option value="Quảng Trị">Quảng Trị
-                        <option value="Sóc Trăng">Sóc Trăng
-                        <option value="Sơn La">Sơn La
-                        <option value="Tây Ninh">Tây Ninh
-                        <option value="Thái Bình">Thái Bình
-                        <option value="Thái Nguyên">Thái Nguyên
-                        <option value="Thanh Hóa">Thanh Hóa
-                        <option value="Thừa Thiên Huế">Thừa Thiên Huế
-                        <option value="Tiền Giang">Tiền Giang
-                        <option value="Trà Vinh">Trà Vinh
-                        <option value="Tuyên Quang">Tuyên Quang
-                        <option value="Vĩnh Long">Vĩnh Long
-                        <option value="Vĩnh Phúc">Vĩnh Phúc
-                        <option value="Yên Bái">Yên Bái
-                        <option value="Phú Yên">Phú Yên
-                        <option value="Tp.Cần Thơ">Tp.Cần Thơ
-                        <option value="Tp.Đà Nẵng">Tp.Đà Nẵng
-                        <option value="Tp.Hải Phòng">Tp.Hải Phòng
-                        <option value="Tp.Hà Nội">Tp.Hà Nội
-                        <option value="TP  HCM">TP HCM
-                        </select>
+                            <div class="carousel-item">
+                                <img class="d-block img-fluid" src="img/dat3.jpg" alt="First slide">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <div class="banner-text">
+                                        <h2>This is Special Capture</h2>
+                                        <p>When people come and share the fabulour emotions to each other</p>
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                    </div>                     
+                </div>
             </div>
+        </div>
+    </section>
 
-            <div class="form_input">
-                <label>Sở thích</label>
-                <input type="text" name="hobby">
-            </div>
-
-            <div class="form_input">
-                <label>Số điện thoại</label>
-                <input type="text" name="phone">
-            </div>
-
-            <div class="form_input">
-                <label>Mô tả bản thân</label>
-                <input type="text" name="description">
-            </div>
-
-            <div id="btn_login">
-                <button>Register</button>
-            </div>
-
-        </form>
-    </div>
 </body>
 </html>

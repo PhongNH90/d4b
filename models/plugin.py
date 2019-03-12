@@ -102,7 +102,7 @@ def arrange(l,k):
     l1.remove(i_max)
   return l_arr
 def get_point(i1,i2):
-  if i1["gender"] == male:
+  if i1["gender"] == "male":
     if i1["age"] - i2["age"] > 2:
       p = 0
     else:
@@ -112,11 +112,14 @@ def get_point(i1,i2):
         p1 = 0.5
       else:
         p1 = 0
-      p2 = 72 - abs(i1["city_point"] - i2["city_point"])
+      if (i1["city"],i2["city"]) in region["Bắc"] or (i1["city"],i2["city"]) in region["Trung"] or (i1["city"],i2["city"]) in region["Nam"]:
+        p2 = 1
+      else:
+        p2 = 0
       p3 = min(3, count_item(i1,i2,"hobby"))
-      p = p1*30 + p2*30/72 + p3*40/3
+      p = p1*3 + p2*2 + p3*5/3
   else:   
-    if i1[age] - i2[age] < -2:
+    if i1["age"] - i2["age"] < -2:
       p = 0
     else: 
       if (i2["age"] - i1["age"]) in [1,2,4]:
@@ -125,9 +128,8 @@ def get_point(i1,i2):
         p1 = 0.5
       else:
         p1 = 0
-      p2 = 72 - abs(i1["city_point"] - i2["city_point"])
       p3 = min(3, count_item(i1,i2,"hobby"))
-      p = p1*30 + p2*30/72 + p3*40/3
+      p = p1*3 + p2*2 + p3*5/3
   return p
 def suggest(item,l):
   l_p = []
@@ -161,3 +163,10 @@ def place_stt(u):
   if u["stt"] == None:
     u["stt"] = "Đang buồn đang chán, ai tán yêu luôn!!!"
   return u    
+
+region = {
+  "Bắc" :  ["Lào Cai", "Yên Bái", "Điện Biên", "Hoà Bình", "Lai Châu", "Sơn La", "Hà Giang", "Cao Bằng", "Bắc Kạn", "Lạng Sơn", "Tuyên Quang", "Thái Nguyên", "Phú Thọ", "Bắc Giang", "Quảng Ninh", "Bắc Ninh", "Hà Nam", "Hà Nội", "Hải Dương", "Hải Phòng", "Hưng Yên", "Nam Định", "Ninh Bình", "Thái Bình", "Vĩnh Phúc"],
+  "Trung" : ["Thanh Hoá", "Nghệ An", "Hà Tĩnh", "Quảng Bình", "Quảng Trị", "Thừa Thiên-Huế", "Đà Nẵng", "Quảng Nam", "Quảng Ngãi", "Bình Định", "Phú Yên", "Khánh Hoà", "Ninh Thuận", "Bình Thuận", "Kon Tum", "Gia Lai", "Đắc Lắc", "Đắc Nông", "Lâm Đồng"],
+  "Nam" : ["Bình Phước", "Bình Dương", "Đồng Nai", "Tây Ninh", "Bà Rịa-Vũng Tàu", "TP HCM", "Long An", "Đồng Tháp", "Tiền Giang", "An Giang", "Bến Tre", "Vĩnh Long", "Trà Vinh", "Hậu Giang", "Kiên Giang", "Sóc Trăng", "Bạc Liêu", "Cà Mau", "Cần Thơ"]
+
+}
