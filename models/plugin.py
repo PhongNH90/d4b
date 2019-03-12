@@ -123,8 +123,8 @@ def get_point(i1,i2):
         p1 = 0.5
       else:
         p1 = 0
-      p3 = min(3, count_item(i1,i2,"hobby"))
-      p = p1*3 + p2*2 + p3*5/3
+      p3 = min(3, count_item(i1,i2))
+      p = p1*2 + p2*2 + p3
   return p
 def suggest(item,l):
   l_p = []

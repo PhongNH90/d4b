@@ -62,6 +62,9 @@
                                 <input type="checkbox" class="form-check-input">
                                 <small>Remember Me</small>
                             </label> -->
+                            {% for m in get_flashed_messages() %}
+                            <div>{{ m }}</div>
+                            {% endfor %}
                             <button type="submit" class="btn btn-login float-right">Submit</button>
                         </div>
                         <div>
