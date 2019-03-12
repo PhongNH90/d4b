@@ -1,3 +1,5 @@
+# from models.user import User
+# from models import mlab
 def bo_dau(s):
   s1 = s.lower()
   s1 = s1.replace("à","a")
@@ -77,18 +79,11 @@ def get_top(l,k,n):
     l_top.append(item_max)
     l1.remove(item_max)
   return l_top
-def count_item(l1,l2,k):
+def count_item(u1,u2):
   ci = 0
-  l_1 = []
-  l_2 = []
-  for i in l1[k]:
-    i1 = bo_dau(i)
-    l_1.append(i1)
-  for i in l2[k]:
-    i1 = bo_dau(i)
-    l_2.append(i1)
-  for i in l_1:
-    if i in l_2:
+  l = ["sport","music","book","movie","food","drink"]
+  for i in l:
+    if bo_dau(u1[i]) == bo_dau(u2[i]):
       ci += 1
   return ci
 def arrange(l,k):
@@ -116,8 +111,8 @@ def get_point(i1,i2):
         p2 = 1
       else:
         p2 = 0
-      p3 = min(3, count_item(i1,i2,"hobby"))
-      p = p1*3 + p2*2 + p3*5/3
+      p3 = count_item(i1,i2)
+      p = p1*2 + p2*2 + p3
   else:   
     if i1["age"] - i2["age"] < -2:
       p = 0
@@ -128,8 +123,8 @@ def get_point(i1,i2):
         p1 = 0.5
       else:
         p1 = 0
-      p3 = min(3, count_item(i1,i2,"hobby"))
-      p = p1*3 + p2*2 + p3*5/3
+      p3 = min(3, count_item(i1,i2))
+      p = p1*2 + p2*2 + p3
   return p
 def suggest(item,l):
   l_p = []
@@ -170,3 +165,11 @@ region = {
   "Nam" : ["Bình Phước", "Bình Dương", "Đồng Nai", "Tây Ninh", "Bà Rịa-Vũng Tàu", "TP HCM", "Long An", "Đồng Tháp", "Tiền Giang", "An Giang", "Bến Tre", "Vĩnh Long", "Trà Vinh", "Hậu Giang", "Kiên Giang", "Sóc Trăng", "Bạc Liêu", "Cà Mau", "Cần Thơ"]
 
 }
+# def check_username(n):
+#   if User.objects(name=n) != None:
+#     fl = "Username exist"
+#   elif not n.isalnum():
+#     fl = "Username only include letter and number"
+#   else:
+#     fl = "OK"
+#   return fl

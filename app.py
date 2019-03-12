@@ -2,6 +2,7 @@ from flask import Flask, request, render_template, redirect, flash, session
 from models import mlab
 from models.plugin import *
 from models.user import User
+import datetime
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "aajlajfkaf"
@@ -15,29 +16,73 @@ def register():
       return render_template("register.html")
     else:
       form = request.form
-      username = form["username"]  
-      p = form["password"]
-      name = form["name"]
-      u = form["username"]
-      g = form["gender"]
-      b = form["birth"]
-      i = form["img"]
-      c = form["city"]
-      h = form["hobby"]
-      phone = form["phone"]
-      des = form["description"]
-      user_object = User.objects()
-      if u in user_object:
-        flash("Tên người dùng đã tồn tại")
-        return render_template("/date4everyone")
+      username = form["username"].lower() 
+      password = form["password"]
+      # ck = check_username(username)
+      if User.objects(username=username).first() != None:
+        flash ("Username exist")
+        return render_template("register.html")
+      elif not username.isalnum():
+        flash ("Username only include letter and number")
+        return render_template("register.html")
       else:
-        pass
-      u = User(em=e, password=p, name=name, username=u, gender=g, birth=b, img=i, city=c, hobby=h, phone="+84"+phone, description=des)
-      u.save()
-      gmail = GMail('nguyenminhhieu2508@gmail.com','nguyenminhhieu')
-      msg = Message('text', to = e, html = '<a href="http://127.0.0.1:5000/date4everyone">Xác nhận tài khoản</a>')
-      gmail.send(msg)
-      return redirect("/login")
+        u = User(username=username, password=password, active=0 )
+        u.save()
+        u.reload()
+        session["token"] = str(u["id"])
+        return redirect("/get-info")
+  else:
+    return redirect("/")
+
+# @app.route("/register", methods = ["GET", "POST"])
+# def register():
+#   if "token" not in session:
+#     if request.method == "GET":
+#       return render_template("register.html")
+#     else:
+#       form = request.form
+#       username = form["username"].lower() 
+#       password = form["password"]
+#       ck = check_username(username)
+#       if ck != True:
+#         flash (ck)
+#         return render_template("register.html")
+#       else:
+#         u = User(username=username, password=password, active=False )
+#         u.save()
+#         session["token"] = str(user["id"])
+#         return render_template("get_info.html")
+#   else:
+#     return render_template("home.html")
+
+@app.route("/get-info", methods = ["GET", "POST"])
+def get_info():
+  if "token" in session:
+    user = User.objects.with_id(session["token"])
+    if request.method == "GET":
+      return render_template("get_info.html")
+    else:
+      form = request.form
+      name = form["name"]
+      gender = form["gender"]
+      email = form["email"].lower() 
+      facebook = form["facebook"]
+      phone = form["phone"] 
+      birth = form["birth"]
+      city = form["city"]
+      img = form["avatar"]
+      description = form["description"]
+      sport = form["sport"]
+      music = form["music"]
+      book = form["book"]
+      movie = form["movie"]
+      food = form["food"]
+      drink = form["drink"]
+      # if email == None or 
+      user.update(set__name=name, set__gender=gender, set__em=email, set__fb=facebook, set__phone=phone, set__birth=birth,set__city=city, set__img=img,set__description=description,set__active=1,set__sport=sport,set__music=music,set__book=book,set__movie=movie,set__food=food,set__drink=drink)
+      return redirect("/logout")
+  else:
+    return redirect("/login")        
 
 @app.route("/login", methods = ["GET", "POST"])
 def login():
@@ -46,7 +91,7 @@ def login():
       return render_template("login.html")
     elif request.method == "POST":
       form = request.form
-      u = form["username"]
+      u = form["username"].lower()
       p = form["password"]
       user = User.objects(username=u).first()
       if user != None:
@@ -77,23 +122,24 @@ def home():
     user = place_img(user)
     user = place_stt(user)
     follow_list = []
-    for i in user["follow_list"]:
-      u = User.objects.with_id(i)
-      u = place_img(u)
-      u = place_stt(u)
-      follow_list.append(u)
-    print(follow_list)
-    boy = list(User.objects(gender="male"))
-    hot_boy = get_top(boy,"like",3)
-    hotboy = []
-    for u in hot_boy:
-      hotboy.append(place_img(u))
-    girl = list(User.objects(gender="female"))
-    hot_girl = get_top(girl,"like",3)
-    hotgirl = []
-    for u in hot_girl:
-      hotgirl.append(place_img(u))
-    return render_template("index.html", user = user, follow_list=follow_list, hotboy=hotboy, hotgirl= hotgirl )
+    if user["follow_list"] != None:
+      for i in user["follow_list"]:
+        u = User.objects.with_id(i)
+        u = place_img(u)
+        u = place_stt(u)
+        follow_list.append(u)
+    # boy = list(User.objects(gender="male"))
+    # hot_boy = get_top(boy,"like",3)
+    # hotboy = []
+    # for u in hot_boy:
+    #   hotboy.append(place_img(u))
+    # girl = list(User.objects(gender="female"))
+    # hot_girl = get_top(girl,"like",3)
+    # hotgirl = []
+    # for u in hot_girl:
+    #   hotgirl.append(place_img(u))
+    # return render_template("index.html", user = user, follow_list=follow_list, hotboy=hotboy, hotgirl= hotgirl )
+    return render_template("index.html", user = user, follow_list=follow_list)
   else:
     return redirect("/login")
 
@@ -140,7 +186,9 @@ def suggest():
 
 @app.route("/profile/<uid>")
 def profile(uid):
-  return render_template("profile.html")
+  if "token" in session:
+    user =  user.objects.with_id("sesion")
+    return render_template("profile.html", user = user)
     
 
 if __name__ == '__main__':

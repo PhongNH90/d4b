@@ -1,4 +1,5 @@
-from mongoengine import Document, IntField, StringField, ListField, DictField
+from mongoengine import Document, IntField, StringField, ListField, DictField,DateTimeField
+import datetime
 
 class User(Document):
     em = StringField() # email
@@ -7,11 +8,16 @@ class User(Document):
     username = StringField()
     # fr_name = StringField()
     gender = StringField()
-    birth = StringField()
+    birth = DateTimeField()
     age = IntField()
     img = StringField()
     city = StringField()
-    hobby = StringField()
+    sport = StringField()
+    music = StringField()
+    book = StringField()
+    movie = StringField()
+    food = StringField()
+    drink = StringField()
     like = IntField()
     interest = ListField()
     follow_list = ListField()
@@ -19,3 +25,4 @@ class User(Document):
     fb = StringField() # facebook
     description =StringField() # tự mô tả ban thân
     stt = StringField() # Trạng thái: chỉ có 1 trạng thái hiển thị trên trang cá nhân
+    active = IntField()
